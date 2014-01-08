@@ -255,6 +255,13 @@ int EVP_PKEY_asn1_add0(const EVP_PKEY_ASN1_METHOD *ameth)
 	return 1;
 	}
 
+void EVP_PKEY_asn1_delete(const EVP_PKEY_ASN1_METHOD *ameth)
+	{
+	if (app_methods == NULL || ameth == NULL)
+		return;
+	(void)sk_EVP_PKEY_ASN1_METHOD_delete_ptr(app_methods, ameth);
+	}
+
 int EVP_PKEY_asn1_add_alias(int to, int from)
 	{
 	EVP_PKEY_ASN1_METHOD *ameth;

@@ -366,6 +366,13 @@ int EVP_PKEY_meth_add0(const EVP_PKEY_METHOD *pmeth)
 	return 1;
 	}
 
+void EVP_PKEY_meth_delete(const EVP_PKEY_METHOD *pmeth)
+	{
+	if (app_pkey_methods == NULL || pmeth == NULL)
+		return;
+	(void)sk_EVP_PKEY_METHOD_delete_ptr(app_pkey_methods, pmeth);
+	}
+
 void EVP_PKEY_CTX_free(EVP_PKEY_CTX *ctx)
 	{
 	if (ctx == NULL)
